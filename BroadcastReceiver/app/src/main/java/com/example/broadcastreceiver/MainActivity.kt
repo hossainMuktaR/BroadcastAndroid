@@ -1,26 +1,20 @@
 package com.example.broadcastreceiver
 
-import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.broadcastreceiver.ui.theme.BroadcastReceiverTheme
 
 class MainActivity : ComponentActivity() {
-    private val customBroadcastReceiver = CustomBroadcastReceiver()
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        registerReceiver(
-            customBroadcastReceiver,
-            IntentFilter("ACTION_FROM_BROADCAST_SENDER")
-        )
         setContent {
             BroadcastReceiverTheme {
                 // A surface container using the 'background' color from the theme
@@ -32,10 +26,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        unregisterReceiver(customBroadcastReceiver)
     }
 }

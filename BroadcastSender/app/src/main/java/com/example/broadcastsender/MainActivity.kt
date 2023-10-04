@@ -31,7 +31,8 @@ class MainActivity : ComponentActivity() {
                     ){
                         Button(
                             onClick = {
-                                Intent("ACTION_FROM_BROADCAST_SENDER").also {
+                                Intent("com.example.broadcastsender.ACTION_FROM_BROADCAST_SENDER").also {
+//                                    it.flags =
                                     sendBroadcast(it)
                                 }
                             }
