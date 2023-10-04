@@ -4,13 +4,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 
 private val TAG = "broadcastrevicer"
 
-class CustomBroadcastReceiver: BroadcastReceiver() {
+class CustomBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        if(intent?.action == "ACTION_FROM_BROADCAST_SENDER") {
-            Log.i(TAG, "Broadcast received from ${intent.action.toString()}")
-        }
+        Log.i(TAG, "Broadcast received from ${intent?.action.toString()}")
+        Toast.makeText(context,"Broadcast received from ${intent?.action.toString()}",Toast.LENGTH_SHORT).show()
     }
 }
