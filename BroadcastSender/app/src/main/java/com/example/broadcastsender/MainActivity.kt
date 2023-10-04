@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                         Button(
                             onClick = {
                                 Intent("com.example.broadcastsender.ACTION_FROM_BROADCAST_SENDER").also {
-//                                    it.flags =
+                                    it.`package` = "com.example.broadcastreceiver"
                                     sendBroadcast(it)
                                 }
                             }

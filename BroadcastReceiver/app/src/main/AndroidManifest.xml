@@ -28,7 +28,7 @@
             android:exported="true"
             android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="com.example.broadcastsender.ACTION_FROM_BROADCAST_SENDER"/>
             </intent-filter>
         </receiver>
     </application>
