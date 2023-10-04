@@ -11,6 +11,10 @@ private val TAG = "broadcastrevicer"
 class CustomBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         Log.i(TAG, "Broadcast received from ${intent?.action.toString()}")
-        Toast.makeText(context,"Broadcast received from ${intent?.action.toString()}",Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            context?.applicationContext,
+            "Broadcast received from ${intent?.action.toString()}",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

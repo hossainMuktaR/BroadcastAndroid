@@ -32,6 +32,8 @@ class MainActivity : ComponentActivity() {
                         Button(
                             onClick = {
                                 Intent("com.example.broadcastsender.ACTION_FROM_BROADCAST_SENDER").also {
+                                    //package name must need for manifestDeclared Receiver
+                                    it.`package` = "com.example.broadcastreceiver"
                                     sendBroadcast(it)
                                 }
                             }

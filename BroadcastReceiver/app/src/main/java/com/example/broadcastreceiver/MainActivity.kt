@@ -11,19 +11,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import com.example.broadcastreceiver.ui.theme.BroadcastReceiverTheme
 
 class MainActivity : ComponentActivity() {
+    // need for contextDeclaredReceiver implementation
     private val customBroadcastReceiver = CustomBroadcastReceiver()
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // start of contextDeclaredReceiver implementation
         val isReceiverExported = true
         val registerFlags = if(isReceiverExported) {
             ContextCompat.RECEIVER_EXPORTED
@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
             IntentFilter("com.example.broadcastsender.ACTION_FROM_BROADCAST_SENDER"),
             registerFlags
         )
+        // end of contextDeclaredReceiver implementation
         setContent {
             BroadcastReceiverTheme {
                 // A surface container using the 'background' color from the theme
@@ -42,8 +43,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Text("Broadcast Receiver App", style = MaterialTheme.typography.bodyLarge)
+                    Box(
+                        contentAlignment = Alignment.Center
+                    ){
+                        Text("Broadcast Receiver App",style = MaterialTheme.typography.bodyLarge)
                     }
                 }
             }
@@ -52,6 +55,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        // need for contextDeclaredReceiver implementation
         unregisterReceiver(customBroadcastReceiver)
     }
 }
